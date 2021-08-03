@@ -4,7 +4,7 @@
 
 .container{
     background-color: black;
-    height: 60px;
+    height: 64px;
 }
 
 .eachLink{
@@ -16,7 +16,6 @@
 .innerContainer{
     display: flex;
     align-items: center;
-    padding-top: 20px;
     flex-direction: row;
     justify-content: space-between;
     margin-left: 20px;
