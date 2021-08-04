@@ -16,13 +16,13 @@ const App = () => {
     <Router>
       <div>
         <Header />
-
-
+      </div>
+      <Switch>
         <Route exact path="/" component={HomeScreen} />
         <Route path="/results" component={ResultScreen} />
         <Route path="/login" component={LoginScreen} />
         <Route path="/signup" component={SignupScreen} />
-      </div>
+      </Switch>
     </Router>
   )
 }
