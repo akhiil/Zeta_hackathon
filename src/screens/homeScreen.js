@@ -24,6 +24,14 @@ const App = () => {
         console.log(ageValue)
     }
 
+    const onlyNum=(e)=> {
+        // this function limit input to only numeric
+        // console.log(e);
+
+        e.target.value = e.target.value.replace(/[^0-9]/g, '').replace(/(\..*?)\..*/g, '$1');
+        
+    }
+
     return (
         <div>
 
@@ -47,7 +55,7 @@ const App = () => {
                             Enter your Expense:-</h2>
                         <input
                             placeholder="In rupees"
-                            className="inputStyle" type="text" value={ageValue} onChange={(e) => setAgeValue(e.target.value)} />
+                            className="inputStyle" type="text" value={ageValue} onInput={(e)=> {onlyNum(e)}} onChange={(e) => setAgeValue(e.target.value)} />
 
                     </label>
                     <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
