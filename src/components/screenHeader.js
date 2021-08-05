@@ -1,7 +1,7 @@
 import React from 'react';
 import Logo from '../components/logo'
 
-const App = () => {
+const App = (props) => {
 
     const styles = {
         triangle: {
@@ -26,7 +26,7 @@ const App = () => {
             }}>
 
                 <Logo height={70} width={70} size={40} />
-                <h1 style={{ marginLeft: 20, color: 'white', fontFamily: 'cursive' }}>Welcome to Budget controller</h1>
+                <h1 style={{ marginLeft: 20, color: 'white', fontFamily: 'cursive' }}>{props.name}</h1>
 
             </div>
             <div style={styles.triangle} />

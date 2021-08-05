@@ -9,6 +9,7 @@ import HomeScreen from './screens/homeScreen';
 import ResultScreen from './screens/resultScreen';
 import LoginScreen from './screens/loginScreen';
 import SignupScreen from './screens/signupScreen';
+import IntrestScreen from './screens/interestScreen';
 import Header from './components/header'
 
 const App = () => {
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="/results" component={ResultScreen} />
         <Route path="/login" component={LoginScreen} />
         <Route path="/signup" component={SignupScreen} />
+        <Route path="/intrests" component={IntrestScreen} />
       </Switch>
     </Router>
   )
