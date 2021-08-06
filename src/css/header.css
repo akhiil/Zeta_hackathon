@@ -24,9 +24,10 @@
 
 .scrollListContainer{
     width: 60px;
-    height: 120px;
+    height: 125px;
     background-color: black;
-    border: 3px solid rgb(190, 190, 190);
+    border: solid rgb(190, 190, 190);
+    border-width: 0 5px 0 5px;
     border-radius: 5px;
     overflow-y: scroll;
 }
@@ -44,6 +45,7 @@
     cursor: pointer;
     font-weight: 700;
     color: #f2f2f2;
+    
 }
 .eachItemScrollLIst:hover {
 padding-left: 10px;

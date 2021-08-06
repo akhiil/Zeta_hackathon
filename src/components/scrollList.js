@@ -10,7 +10,7 @@ const App = (props) => {
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
                         <p onClick={() => {
                             props.valueSet(item.value);
-                        }} style={{ backgroundColor: item.value === props.selected ? '#666666' : null }} className="eachItemScrollLIst">{item.label}</p>
+                        }} style={{ backgroundColor: item.value === props.selected ? '#666666' : null, fontSize: 14.5 }} className="eachItemScrollLIst">{item.label}</p>
                     </div>
                 )
             })}

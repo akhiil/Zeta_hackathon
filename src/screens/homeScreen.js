@@ -36,7 +36,7 @@ const App = (props) => {
             <AfterHeader name="Welcome to budget controller" />
             <div className="homeContainer">
                 <form className="formContainer" onSubmit={onSubmitHandler}>
-                    <label>
+                    <label style={{ display: 'flex', flexDirection: 'row', marginBottom: 50, justifyContent: 'space-between' }}>
                         <h2 style={{ marginBottom: 10 }}>
                             Enter you Age:-</h2>
                         <input
@@ -51,9 +51,9 @@ const App = (props) => {
                         /> */}
 
                     </label>
-                    <label>
+                    <label style={{ display: 'flex', flexDirection: 'row', marginBottom: 50, justifyContent: 'space-between' }}>
                         <h2 style={{ marginBottom: 10 }}>
-                            Enter your monthly expense:-</h2>
+                            Monthly expense:-</h2>
                         <input
                             placeholder="In rupees eg:- 1000"
                             className="inputStyle" type="text" value={expense} onChange={(e) => setExpense(e.target.value)} />
