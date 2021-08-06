@@ -5,7 +5,7 @@ const App = (props) => {
     const styles = {
         logoStyle: {
             display: 'flex',
-            backgroundColor: 'red',
+            backgroundColor: '#ff751a',
             border: '8px solid black',
             borderRadius: 200,
             height: props.height,

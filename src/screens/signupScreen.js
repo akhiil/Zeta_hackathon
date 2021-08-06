@@ -1,33 +1,80 @@
-import React,{ useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import AfterHeader from '../components/screenHeader'
 
-const App = () => {
+import '../css/homescreen.css'
 
-    const [userRegistration, setUserRegistration] = useState({
-        name: '',
-        email: '',
-        password: '',
-    })
 
-    const handleData=(e)=>{
-        const field=e.target.name;
-        const value=e.target.value;
-        console.log(field, value);
-        setUserRegistration({... userRegistration,[field]: value})
+const App = (props) => {
+    const [expense, setExpense] = useState('');
+    const [ageValue, setAgeValue] = useState('');
+    const [interestValue, setInterestValue] = useState('');
+
+
+
+    const onSubmitHandler = (e) => {
+        e.preventDefault();
+
+        console.log("button pressed");
     }
 
     return (
         <div>
-            <h1>
-                this is signup screen
-            </h1>
-            <form action="">
-                <label htmlFor="name">Name</label>
-                <input value={userRegistration.name} onChange={(e)=>handleData(e)} type="text" name="name" id="name" placeholder="Enter your name"/>
-                <label htmlFor="password">password</label>
-                <input value={userRegistration.password} onChange={(e)=>handleData(e)} type="password" name="password" id="password" placeholder="Enter your password"/>
-                <label htmlFor="email">email</label>
-                <input value={userRegistration.email} onChange={(e)=>handleData(e)} type="email" name="email" id="email" placeholder="Enter your email"/>
-            </form>
+
+            <AfterHeader name="Signup page" />
+            <div className="homeContainer">
+                <form className="formContainer" onSubmit={onSubmitHandler}>
+
+                    <label style={{ display: 'flex', flexDirection: 'row', marginBottom: 50, justifyContent: 'space-between' }}>
+                        <h2 style={{ marginBottom: 10, marginRight: 20 }}>
+                            Full name:-</h2>
+                        <input
+                            style={{ width: '70%' }}
+                            placeholder="Enter your name"
+                            className="inputStyle"
+                            type="text" value={ageValue} onChange={(e) => setAgeValue(e.target.value)} />
+
+                    </label>
+
+                    <label style={{ display: 'flex', flexDirection: 'row', marginBottom: 50, justifyContent: 'space-between' }}>
+                        <h2 style={{ marginBottom: 10, marginRight: 20 }}>
+                            Email:-</h2>
+                        <input
+                            style={{ width: '70%' }}
+                            placeholder="Enter your email"
+                            className="inputStyle"
+                            type="text" value={ageValue} onChange={(e) => setAgeValue(e.target.value)} />
+
+                    </label>
+                    <label style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+                        <h2 style={{ marginBottom: 10, marginRight: 20 }}>
+                            password:-</h2>
+                        <input
+                            style={{ width: '70%' }}
+                            placeholder="Enter your password"
+                            className="inputStyle" type="text" value={expense} onChange={(e) => setExpense(e.target.value)} />
+
+                    </label>
+
+
+
+                    <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 20 }}>
+                        <button
+                            className="buttonStyle">Login</button>
+                    </div>
+
+                    {/* <input className="buttonStyle" type="submit" value="Submit" /> */}
+                    <div onClick={() => props.history.push('/login')} style={{ textAlign: 'center' }}>
+                        <p style={{ color: 'blue', textDecoration: 'underline', cursor: 'pointer' }}>
+                            already have an account? login</p>
+                    </div>
+
+                </form>
+
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <button
+                    className="buttonStyle">signup with google</button>
+            </div>
         </div>
     )
 }
