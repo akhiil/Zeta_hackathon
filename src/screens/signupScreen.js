@@ -3,18 +3,64 @@ import AfterHeader from '../components/screenHeader'
 
 import '../css/homescreen.css'
 
+import firebase from 'firebase'
+require('firebase/auth')
+
+
+
 
 const App = (props) => {
-    const [expense, setExpense] = useState('');
-    const [ageValue, setAgeValue] = useState('');
-    const [interestValue, setInterestValue] = useState('');
 
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyAssP_u2GiFPZxwGE1fGs3DyHFIfoNYRFg",
+        authDomain: "zeta-hackathon-529b5.firebaseapp.com",
+        projectId: "zeta-hackathon-529b5",
+        storageBucket: "zeta-hackathon-529b5.appspot.com",
+        messagingSenderId: "387293980144",
+        appId: "1:387293980144:web:666ab6cb6be69ff22de935"
+      };
+      // Initialize Firebase
+      if( firebase.apps.length === 0 ){
+        firebase.initializeApp(firebaseConfig);
+     }
+    //   firebase.initializeApp(firebaseConfig);
+      
+    //   console.log("Firebase initialized", firebase);
+  
+
+
+    const [Register, setRegister] = useState({
+        name: "",
+        email: "",
+        password: ""
+    });
+    const detailHandler = (e) => {
+        const name = e.target.name;
+        const value = e.target.value;
+        setRegister({ ...Register, [name]: value });
+    }
 
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
 
         console.log("button pressed");
+
+        firebase.auth().createUserWithEmailAndPassword(Register.email, Register.password)
+            .then((userCredential) => {
+                // Signed in 
+                var email = userCredential.user.email;
+                console.log(email);
+                // ...
+            })
+            .catch((error) => {
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                console.log(errorMessage);
+                // ..
+            });
+
     }
 
     return (
@@ -30,8 +76,8 @@ const App = (props) => {
                         <input
                             style={{ width: '70%' }}
                             placeholder="Enter your name"
-                            className="inputStyle"
-                            type="text" value={ageValue} onChange={(e) => setAgeValue(e.target.value)} />
+                            className="inputStyle" name="name"
+                            type="text" value={Register.name} onChange={(e) => detailHandler(e)} />
 
                     </label>
 
@@ -41,8 +87,8 @@ const App = (props) => {
                         <input
                             style={{ width: '70%' }}
                             placeholder="Enter your email"
-                            className="inputStyle"
-                            type="text" value={ageValue} onChange={(e) => setAgeValue(e.target.value)} />
+                            className="inputStyle" name="email"
+                            type="email" value={Register.email} onChange={(e) => detailHandler(e)} />
 
                     </label>
                     <label style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
@@ -51,7 +97,7 @@ const App = (props) => {
                         <input
                             style={{ width: '70%' }}
                             placeholder="Enter your password"
-                            className="inputStyle" type="text" value={expense} onChange={(e) => setExpense(e.target.value)} />
+                            className="inputStyle" name="password" type="password" value={Register.password} onChange={(e) => detailHandler(e)} />
 
                     </label>
 
