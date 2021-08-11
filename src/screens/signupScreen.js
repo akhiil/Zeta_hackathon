@@ -19,15 +19,15 @@ const App = (props) => {
         storageBucket: "zeta-hackathon-529b5.appspot.com",
         messagingSenderId: "387293980144",
         appId: "1:387293980144:web:666ab6cb6be69ff22de935"
-      };
-      // Initialize Firebase
-      if( firebase.apps.length === 0 ){
+    };
+    // Initialize Firebase
+    if (firebase.apps.length === 0) {
         firebase.initializeApp(firebaseConfig);
-     }
+    }
     //   firebase.initializeApp(firebaseConfig);
-      
+
     //   console.log("Firebase initialized", firebase);
-  
+
 
 
     const [Register, setRegister] = useState({
@@ -41,6 +41,33 @@ const App = (props) => {
         setRegister({ ...Register, [name]: value });
     }
 
+    const GoogleAuthentication = (e) => {
+        var provider = new firebase.auth.GoogleAuthProvider();
+        provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+        firebase.auth()
+            .signInWithPopup(provider)
+            .then((result) => {
+                /** @type {firebase.auth.OAuthCredential} */
+                var credential = result.credential;
+
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                var token = credential.accessToken;
+                // The signed-in user info.
+                var user = result.user;
+                console.log(token,user);
+                // ...
+            }).catch((error) => {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // The email of the user's account used.
+                var email = error.email;
+                // The firebase.auth.AuthCredential type that was used.
+                var credential = error.credential;
+                // ...
+            });
+
+    }
 
     const onSubmitHandler = (e) => {
         e.preventDefault();
@@ -119,7 +146,7 @@ const App = (props) => {
             </div>
             <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <button
-                    className="buttonStyle">signup with google</button>
+                    className="buttonStyle" onClick={(e) => GoogleAuthentication(e)}>signup with google</button>
             </div>
         </div>
     )
