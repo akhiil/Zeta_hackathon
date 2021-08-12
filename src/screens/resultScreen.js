@@ -12,6 +12,29 @@ const EachBox = (props) => {
     )
 }
 
+async function html() {
+    const url = 'https://cors-anywhere.herokuapp.com/http://groww.in/mutual-funds/category/best-equity-mutual-funds';
+    const response = await fetch(url, {
+        // 'mode': 'cors',
+        // 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36'
+    });
+    const html = (await response.text()); // html as text
+    // console.log(html);
+    const doc = new DOMParser().parseFromString(html, 'text/html');
+
+    // console.log(doc.title, doc.body);
+    // const table=doc.querySelector("#seoTopFundsList > table > tbody");
+    for (let i = 1; i <= 5; i++) {
+
+        let data = doc.querySelector("#seoTopFundsList > table > tbody > tr:nth-child(" + i + ") > td:nth-child(2) > a").innerHTML;
+
+        console.log(data);
+        // the data variable will have the names of eqity mutual funds
+
+    }
+    // console.log(table);
+}
+
 
 const App = (props) => {
     const [expense, setExpense] = useState('');
